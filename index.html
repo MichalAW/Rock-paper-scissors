@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>8.4 Zadanie ( piszemy własną grę, rock, paper, scissors)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/style.css">  
+</head>
+<body>
+  <div>
+    <button id="newGameButton">New Game</button>
+  </div>
+  <div class="show" id="show">
+    <div> 
+      <button class="btn rock-button" id="rock-button">Rock</button>
+    </div>
+    <div>
+      <button class="btn paper-button" id="paper-button">Paper</button>
+    </div>
+    <div>
+      <button class="btn scissors-button" id="scissors-button">Scissors</button>
+    </div>
+    <div id="score-output">
+    </div>
+    <div id="score">
+      <p>SCORE</p>
+    </div>
+  </div>
+  <div id= "result" class="scoreboard">
+    <div id="player-label" class="label player-label">player</div>
+    <div id="computer-label" class="label computer-label">cpu</div>
+    <span id="playerScoreWins">0</span>:<span id="computerScoreWins">0</span>
+  </div>
+  <div>
+    <div></div>
+    <div id="output"></div>
+    <div id="scoreRounds"></div>
+  </div>
+  <script  src="js/index.js"></script>
+</body>
+</html>
