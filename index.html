@@ -16,13 +16,13 @@
   </div>
   <div class="show" id="show">
     <div> 
-      <button class="btn rock-button" id="rock-button">Rock</button>
+      <button class="btn rock-button player-move" id="rock-button" data-move="rock">Rock</button>
     </div>
     <div>
-      <button class="btn paper-button" id="paper-button">Paper</button>
+      <button class="btn paper-button player-move" id="paper-button" data-move="paper">Paper</button>
     </div>
     <div>
-      <button class="btn scissors-button" id="scissors-button">Scissors</button>
+      <button class="btn scissors-button player-move" id="scissors-button" data-move="scissors">Scissors</button>
     </div>
     <div id="score-output">
     </div>
@@ -39,6 +39,35 @@
     <div></div>
     <div id="output"></div>
     <div id="scoreRounds"></div>
+  </div>
+  <div class="overlay">
+    <div class="modal">
+      <a href="#" class="close">x</a>
+      <header></header>
+      <div class="content">
+        <p>Close, and press New Game!</p>           
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Numer rundy</th>
+              <th>ruch gracza</th>
+              <th>ruch komputera</th>
+              <th>wynik gracza</th>
+              <th>wynik komputera</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John</td>
+              <td>John</td>
+              <td>John</td>
+              <td>John</td>
+              <td>John</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
   <script  src="js/index.js"></script>
 </body>

@@ -13,16 +13,19 @@ var allButtons = document.getElementsByClassName('btn');
 //var allButtons = [rockButton, paperButton, scissorsButton];
 var numberOfButtons = allButtons.length;
 var rounds; 
-var settings = {
+var params = {
   playerChoice: null,
   computerChoice: null,
   playerScore: 0,
   computerScore: 0,
-  setNumberOfRounds: 3,
+  numberOfRounds: 0,
+  progres: []
 };
 
+var moveButtons = document.querySelectorAll('.player-move');
+
 function newGame() {
-  activeButtons()
+  activeButtons();
   toggleGameButtons();
   setNumberOfRounds();
   resetScore();
@@ -56,8 +59,9 @@ function setNumberOfRounds() {
   if (isNaN(rounds) || rounds === '0' || rounds === '') {
     alert('Wrong value!');
   } else {
-    settings.playerScore = 0;
-    settings.computerScore = 0;
+    params.playerScore = 0;
+    params.computerScore = 0;
+    params.numberOfRounds = rounds;
     
     output.innerHTML = '';
     score.innerHTML = '';
@@ -68,64 +72,79 @@ function setNumberOfRounds() {
 };
 
 function resetScore() {
-  document.getElementById('playerScoreWins').innerHTML = settings.playerScore = 0;
-  document.getElementById('computerScoreWins').innerHTML = settings.computerScore = 0;
+  document.getElementById('playerScoreWins').innerHTML = params.playerScore = 0;
+  document.getElementById('computerScoreWins').innerHTML = params.computerScore = 0;
 }
 
 function playerMove(choice) {
-  settings.playerChoice = choice;
+  params.playerChoice = choice;
+  
+  params.progres.push({
+    playerChoice: choice,
+    computerChoice: params.computerChoice,
+    playerScore: params.playerScore,
+    computerScore: params.computerScore,
+    numberOfRounds: params.numberOfRounds
+  });
+  console.log(params.progres);
 } 
 
 function computerMove() {
   var possibleMoves = ['rock', 'paper', 'scissors'];
   var index = Math.floor(Math.random() * 3);
-  settings.computerChoice = possibleMoves[index];
+  params.computerChoice = possibleMoves[index];
 };
+
+function endGameModal(text) {
+  document.querySelector('.overlay').classList.add('show');
+  document.querySelector('.modal').classList.add('show');
+  document.querySelector('.modal header').innerHTML = text;
+}
+
+function closeModal() {
+  document.querySelector('.overlay').classList.remove('show');
+  document.querySelector('.modal').classList.remove('show');
+}
 
 function checkRoundWinner() {
   rounds;
-  if (settings.playerChoice === settings.computerChoice) {
+  if (params.playerChoice === params.computerChoice) {
     output.innerHTML = 'You made the same choice, so draw!';
   }
   
-  if ((settings.playerChoice === 'rock' && settings.computerChoice === 'paper') || (settings.playerChoice === 'paper' && settings.computerChoice === 'scissors') || (settings.playerChoice === 'scissors' && settings.computerChoice === 'rock')) {
-    output.innerHTML = "computer choose " + settings.computerChoice + ", so you lost!";
-    settings.computerScore++;
-    computerScoreOnBoard.innerHTML = settings.computerScore;
+  if ((params.playerChoice === 'rock' && params.computerChoice === 'paper') || (params.playerChoice === 'paper' && params.computerChoice === 'scissors') || (params.playerChoice === 'scissors' && params.computerChoice === 'rock')) {
+    output.innerHTML = "computer choose " + params.computerChoice + ", so you lost!";
+    params.computerScore++;
+    computerScoreOnBoard.innerHTML = params.computerScore;
   }
-  if ((settings.playerChoice === 'scissors' && settings.computerChoice === 'paper') || (settings.playerChoice === 'rock' && settings.computerChoice === 'scissors') || (settings.playerChoice === 'paper' && settings.computerChoice === 'rock')) {
-    output.innerHTML = "computer choose " + settings.computerChoice + ", so you win!";
-    settings.playerScore++;
-    playerScoreOnBoard.innerHTML = settings.playerScore;
+  if ((params.playerChoice === 'scissors' && params.computerChoice === 'paper') || (params.playerChoice === 'rock' && params.computerChoice === 'scissors') || (params.playerChoice === 'paper' && params.computerChoice === 'rock')) {
+    output.innerHTML = "computer choose " + params.computerChoice + ", so you win!";
+    params.playerScore++;
+    playerScoreOnBoard.innerHTML = params.playerScore;
   }
-  if (settings.playerScore === rounds || settings.computerScore === rounds ) {
+  if (params.playerScore === rounds || params.computerScore === rounds ) {
     toggleGameButtons();
   
-    if (rounds == settings.playerScore) {
-      score.innerHTML = 'Winner winner chicken dinner !<br> Press "NEW GAME"';
+    if (rounds == params.playerScore) {
       disableButtons();
+      // modal
+      endGameModal('Winner winner chicken dinner !');
     }
-    else if (rounds == settings.computerScore) {
-      score.innerHTML = 'You have lost !<br> Press "NEW GAME"';
+    else if (rounds == params.computerScore) {
       disableButtons();
+      //modal
+      endGameModal('You have lost !');
     }}
 };
 
 newGameButton.addEventListener('click', newGame);
-rockButton.addEventListener('click', function() {
-  playerMove('rock');
-  computerMove();
-  checkRoundWinner();
+document.querySelector('.close').addEventListener('click', closeModal);
+
+for (var i = 0; i < moveButtons.length;i++ ) {
+  moveButtons[i].addEventListener('click', function() {
+    playerMove(this.getAttribute("data-move"));
+    computerMove();
+    checkRoundWinner();
 });
 
-paperButton.addEventListener('click', function(){
-  playerMove('paper');
-  computerMove();
-  checkRoundWinner();
-});
-
-scissorsButton.addEventListener('click', function(){
-  playerMove('scissors');
-  computerMove();
-  checkRoundWinner();
-});
+}
