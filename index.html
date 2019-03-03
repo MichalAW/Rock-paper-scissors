@@ -14,7 +14,7 @@
   <div>
     <button id="newGameButton">New Game</button>
   </div>
-  <div class="show" id="show">
+  <div class="all-buttons" id="show">
     <div> 
       <button class="btn rock-button player-move" id="rock-button" data-move="rock">Rock</button>
     </div>
@@ -46,24 +46,17 @@
       <header></header>
       <div class="content">
         <p>Close, and press New Game!</p>           
-        <table class="table table-bordered">
+        <table id="game-log" class="table table-bordered">
           <thead>
             <tr>
               <th>Numer rundy</th>
               <th>ruch gracza</th>
               <th>ruch komputera</th>
-              <th>wynik gracza</th>
+              <!-- <th>wynik gry</th> -->
               <th>wynik komputera</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>John</td>
-              <td>John</td>
-              <td>John</td>
-              <td>John</td>
-              <td>John</td>
-            </tr>
           </tbody>
         </table>
       </div>

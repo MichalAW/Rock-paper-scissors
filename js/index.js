@@ -80,13 +80,21 @@ function playerMove(choice) {
   params.playerChoice = choice;
   
   params.progres.push({
+    //player move
     playerChoice: choice,
+    // BOT move
     computerChoice: params.computerChoice,
+    // player score
     playerScore: params.playerScore,
+    // BOT score
     computerScore: params.computerScore,
+    // number of rounds
     numberOfRounds: params.numberOfRounds
   });
   console.log(params.progres);
+  document.querySelector('#game-log tbody').insertAdjacentHTML('beforeEnd ', '<tr><td>' + params.numberOfRounds + 
+    '</td><td>' + choice +'</td><td>' + params.computerChoice + '</td><td>' 
+    + params.playerScore + ' : ' + params.computerScore + '</td></tr>');
 } 
 
 function computerMove() {

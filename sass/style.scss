@@ -80,6 +80,10 @@ button {
   }
 }
 
+.all-buttons {
+  display: none;
+}
+
 .modal {
   display: none;
   background: #fff;
@@ -103,7 +107,7 @@ button {
     color: #000;
     text-decoration: none;
   }
-  
+
   header {
     font-size: 20px;
     line-height: 30px;
