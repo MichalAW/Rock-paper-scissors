@@ -92,7 +92,7 @@ function playerMove(choice) {
     numberOfRounds: params.numberOfRounds
   });
   console.log(params.progres);
-  document.querySelector('#game-log tbody').insertAdjacentHTML('beforeEnd ', '<tr><td>' + params.numberOfRounds + 
+  document.querySelector('#game-log tbody').insertAdjacentHTML('beforeEnd', '<tr><td>' + params.numberOfRounds + 
     '</td><td>' + choice +'</td><td>' + params.computerChoice + '</td><td>' 
     + params.playerScore + ' : ' + params.computerScore + '</td></tr>');
 } 
