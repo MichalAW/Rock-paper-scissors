@@ -93,7 +93,7 @@ function playerMove(choice) {
   });
   console.log(params.progres);
   document.querySelector('#game-log tbody').insertAdjacentHTML('beforeEnd', '<tr><td>' + params.numberOfRounds + 
-    '</td><td>' + choice +'</td><td>' + params.computerChoice + '</td><td>' 
+    '</td><td>' + choice + '</td><td>' + params.computerChoice + '</td><td>' 
     + params.playerScore + ' : ' + params.computerScore + '</td></tr>');
 } 
 
