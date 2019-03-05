@@ -79,7 +79,7 @@ function resetScore() {
 function playerMove(choice) {
   params.playerChoice = choice;
 
-  params.progress.push({
+  params.progres.push({
     //number of round
     numberOfRounds: params.numberOfRounds,
     // player move
@@ -102,7 +102,7 @@ function playerMove(choice) {
   tr.innerHTML = gameTableRows;
   // add <tr> to table - with every "move" , it will add new <tr>
   document.querySelector('#game-log tbody').appendChild(tr);
-}
+};
 
 function computerMove() {
   var possibleMoves = ['rock', 'paper', 'scissors'];
@@ -159,7 +159,7 @@ for (var i = 0; i < moveButtons.length;i++ ) {
   moveButtons[i].addEventListener('click', function() {
     computerMove();
     playerMove(this.getAttribute("data-move"));
-    checkRoundWinner();
+    checkRoundWinner()
 });
 
-}
+};
