@@ -78,24 +78,31 @@ function resetScore() {
 
 function playerMove(choice) {
   params.playerChoice = choice;
-  
-  params.progres.push({
-    //player move
+
+  params.progress.push({
+    //number of round
+    numberOfRounds: params.numberOfRounds,
+    // player move
     playerChoice: choice,
-    // BOT move
+    // computer move
     computerChoice: params.computerChoice,
-    // player score
-    playerScore: params.playerScore,
-    // BOT score
-    computerScore: params.computerScore,
-    // number of rounds
-    numberOfRounds: params.numberOfRounds
+    // round score
+    roundScore: params.playerScore + ' : ' + params.computerScore
   });
-  console.log(params.progres);
-  document.querySelector('#game-log tbody').insertAdjacentHTML('beforeEnd', '<tr><td>' + params.numberOfRounds + 
-    '</td><td>' + choice + '</td><td>' + params.computerChoice + '</td><td>' 
-    + params.playerScore + ' : ' + params.computerScore + '</td></tr>');
-} 
+
+  // create <tr>
+  var tr = document.createElement('tr');
+
+  // create value <tr> - 4 x <td> with values
+  var gameTableRows = '<td>' + params.numberOfRounds + 
+  '</td><td>' + choice +'</td><td>' + params.computerChoice + '</td><td>' 
+  + params.playerScore + ' : ' + params.computerScore + '</td>';
+
+  // add to created <tr> var gameTableRows, that contains <td>
+  tr.innerHTML = gameTableRows;
+  // add <tr> to table - with every "move" , it will add new <tr>
+  document.querySelector('#game-log tbody').appendChild(tr);
+}
 
 function computerMove() {
   var possibleMoves = ['rock', 'paper', 'scissors'];
@@ -150,8 +157,8 @@ document.querySelector('.close').addEventListener('click', closeModal);
 
 for (var i = 0; i < moveButtons.length;i++ ) {
   moveButtons[i].addEventListener('click', function() {
-    playerMove(this.getAttribute("data-move"));
     computerMove();
+    playerMove(this.getAttribute("data-move"));
     checkRoundWinner();
 });
 
