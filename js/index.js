@@ -12,7 +12,8 @@ var result = document.getElementById('result');
 var allButtons = document.getElementsByClassName('btn'); 
 //var allButtons = [rockButton, paperButton, scissorsButton];
 var numberOfButtons = allButtons.length;
-var rounds; 
+var rounds;
+var tableBody = document.querySelector('#game-log tbody');
 var params = {
   playerChoice: null,
   computerChoice: null,
@@ -78,12 +79,12 @@ function resetScore() {
 // added
 function clearScoreTable() {
   params.progres = [];
-  document.querySelector('#game-log tbody').innerHTML = '';
+  tableBody.innerHTML = '';
 }
 
 // added
 function scoreTable() {
-  for (var i=0; i<params.progres.length; i++) {
+  for (var i = 0; i < params.progres.length; i++) {
     var tr = document.createElement('tr');
 
     Object.keys(params.progres[i]).forEach(key => {
@@ -94,7 +95,7 @@ function scoreTable() {
       tr.appendChild(td);
     });
   }
-  document.querySelector('#game-log tbody').appendChild(tr);
+  tableBody.appendChild(tr);
 }
 
 function playerMove(choice) {
