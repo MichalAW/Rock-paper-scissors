@@ -19,16 +19,20 @@ var params = {
   playerScore: 0,
   computerScore: 0,
   numberOfRounds: 0,
+  currentComputerScore: 0,
+  currentPlayerScore: 0,
   progres: []
 };
 
 var moveButtons = document.querySelectorAll('.player-move');
 
 function newGame() {
-  activeButtons();
+  disableActiveButton(false);
   toggleGameButtons();
   setNumberOfRounds();
   resetScore();
+  // added
+  clearScoreTable();
 }
 
 function toggleGameButtons() {
@@ -42,15 +46,9 @@ function toggleGameButtons() {
   }
 }
 
-function activeButtons() {
+function disableActiveButton(booleanVal) {
   for (var i = 0; i < numberOfButtons; i++) {
-    allButtons[i].disabled = false;
-  }
-}
-
-function disableButtons() {
-  for (var i = 0; i < numberOfButtons; i++) {
-    allButtons[i].disabled = true;
+    allButtons[i].disabled = booleanVal;
   }
 }
 
@@ -67,7 +65,8 @@ function setNumberOfRounds() {
     score.innerHTML = '';
     
     document.querySelector('#scoreRounds').innerHTML = rounds + ' won rounds means victory.';
-    activeButtons()
+    // activeButtons()
+    disableActiveButton(false);
   }
 };
 
@@ -76,32 +75,40 @@ function resetScore() {
   document.getElementById('computerScoreWins').innerHTML = params.computerScore = 0;
 }
 
+// added
+function clearScoreTable() {
+  params.progres = [];
+  document.querySelector('#game-log tbody').innerHTML = '';
+}
+
+// added
+function scoreTable() {
+  for (var i=0; i<params.progres.length; i++) {
+    var tr = document.createElement('tr');
+
+    Object.keys(params.progres[i]).forEach(key => {
+      var value = params.progres[i][key];
+      var td = document.createElement('td');
+      
+      td.innerHTML = value;
+      tr.appendChild(td);
+    });
+  }
+  document.querySelector('#game-log tbody').appendChild(tr);
+}
+
 function playerMove(choice) {
   params.playerChoice = choice;
+  setGameScore();
 
   params.progres.push({
-    //number of round
-    numberOfRounds: params.numberOfRounds,
-    // player move
+    numberOfRounds: params.progres.length + 1,
     playerChoice: choice,
-    // computer move
     computerChoice: params.computerChoice,
-    // round score
-    roundScore: params.playerScore + ' : ' + params.computerScore
+    roundScore: params.currentPlayerScore + ' : ' + params.currentComputerScore,
+    gameScore: params.playerScore + ' : ' + params.computerScore
   });
 
-  // create <tr>
-  var tr = document.createElement('tr');
-
-  // create value <tr> - 4 x <td> with values
-  var gameTableRows = '<td>' + params.numberOfRounds + 
-  '</td><td>' + choice +'</td><td>' + params.computerChoice + '</td><td>' 
-  + params.playerScore + ' : ' + params.computerScore + '</td>';
-
-  // add to created <tr> var gameTableRows, that contains <td>
-  tr.innerHTML = gameTableRows;
-  // add <tr> to table - with every "move" , it will add new <tr>
-  document.querySelector('#game-log tbody').appendChild(tr);
 };
 
 function computerMove() {
@@ -121,32 +128,44 @@ function closeModal() {
   document.querySelector('.modal').classList.remove('show');
 }
 
-function checkRoundWinner() {
-  rounds;
+// added
+function setGameScore() {
   if (params.playerChoice === params.computerChoice) {
     output.innerHTML = 'You made the same choice, so draw!';
+    params.currentComputerScore = 0;
+    params.currentPlayerScore = 0;
   }
-  
+
   if ((params.playerChoice === 'rock' && params.computerChoice === 'paper') || (params.playerChoice === 'paper' && params.computerChoice === 'scissors') || (params.playerChoice === 'scissors' && params.computerChoice === 'rock')) {
     output.innerHTML = "computer choose " + params.computerChoice + ", so you lost!";
+    params.currentComputerScore = 1;
+    params.currentPlayerScore = 0;
+
     params.computerScore++;
     computerScoreOnBoard.innerHTML = params.computerScore;
   }
+  
   if ((params.playerChoice === 'scissors' && params.computerChoice === 'paper') || (params.playerChoice === 'rock' && params.computerChoice === 'scissors') || (params.playerChoice === 'paper' && params.computerChoice === 'rock')) {
     output.innerHTML = "computer choose " + params.computerChoice + ", so you win!";
+    params.currentComputerScore = 0;
+    params.currentPlayerScore = 1;
+
     params.playerScore++;
     playerScoreOnBoard.innerHTML = params.playerScore;
   }
+}
+
+function checkRoundWinner() {
   if (params.playerScore === rounds || params.computerScore === rounds ) {
     toggleGameButtons();
   
     if (rounds == params.playerScore) {
-      disableButtons();
+      disableActiveButton(true);
       // modal
       endGameModal('Winner winner chicken dinner !');
     }
     else if (rounds == params.computerScore) {
-      disableButtons();
+      disableActiveButton(true);
       //modal
       endGameModal('You have lost !');
     }}
@@ -159,7 +178,9 @@ for (var i = 0; i < moveButtons.length;i++ ) {
   moveButtons[i].addEventListener('click', function() {
     computerMove();
     playerMove(this.getAttribute("data-move"));
-    checkRoundWinner()
-});
+    checkRoundWinner();
+    scoreTable();
 
+    console.log(params.progres);
+  });
 };
