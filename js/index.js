@@ -76,15 +76,15 @@ function resetScore() {
   document.getElementById('computerScoreWins').innerHTML = params.computerScore = 0;
 }
 
-// added
 function clearScoreTable() {
   params.progres = [];
   tableBody.innerHTML = '';
 }
-
-// added
+//create table
 function scoreTable() {
-  for (var i = 0; i < params.progres.length; i++) {
+  var numberOfParamsProgres = params.progres.length
+
+  for (var i = 0; i < numberOfParamsProgres; i++) {
     var tr = document.createElement('tr');
 
     Object.keys(params.progres[i]).forEach(key => {
@@ -175,13 +175,13 @@ function checkRoundWinner() {
 newGameButton.addEventListener('click', newGame);
 document.querySelector('.close').addEventListener('click', closeModal);
 
-for (var i = 0; i < moveButtons.length;i++ ) {
+var numberOfMoveButtons = moveButtons.length
+
+for (var i = 0; i < numberOfMoveButtons; i++ ) {
   moveButtons[i].addEventListener('click', function() {
     computerMove();
     playerMove(this.getAttribute("data-move"));
     checkRoundWinner();
     scoreTable();
-
-    console.log(params.progres);
   });
 };
