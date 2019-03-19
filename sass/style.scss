@@ -1,3 +1,6 @@
+$white-color: #FFFFFF;
+$button-color: #02AC46;
+
 body {
     padding: 10px;
     text-align: center;
@@ -23,8 +26,8 @@ button {
     touch-action: manipulation;
     user-select: none;
     &:hover, &:active {
-        color: #02ac46;
-        background-color: #fff;
+        color: $button-color;
+        background-color: $white-color;
     }
 }
 
@@ -121,4 +124,10 @@ button {
   padding: 15px;
   height: 480px;
   overflow-y: scroll;
+}
+
+@media only screen and (max-width: 768px) {
+  .scoreboard {
+    float: none;
+  }
 }
