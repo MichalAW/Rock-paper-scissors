@@ -1,5 +1,5 @@
 {
-  "name": "Rock-paper-scissors",
+  "name": "13.Rock-paper-scissors",
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
@@ -21,15 +21,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MichalAW/Rock-paper-scissors.git"
+    "url": "https://github.com/MichalAW/13.Rock-paper-scissors.git"
   },
   "keywords": [],
   "author": "MichalAW michal.wanta@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MichalAW/Rock-paper-scissors/issues"
+    "url": "https://github.com/MichalAW/13.Rock-paper-scissors/issues"
   },
-  "homepage": "https://github.com/MichalAW/Rock-paper-scissors#readme",
+  "homepage": "https://github.com/MichalAW/13.Rock-paper-scissors#readme",
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
     "browser-sync": "^2.26.3",
