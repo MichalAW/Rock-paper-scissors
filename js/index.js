@@ -56,7 +56,7 @@ function disableActiveButton(booleanVal) {
 function setNumberOfRounds() {
   rounds = parseInt(window.prompt('How many rounds?'));
   if (isNaN(rounds) || rounds === '0' || rounds === '') {
-    alert('Wrong value!');
+    alert('Wrong value!, please refresh site');
   } else {
     params.playerScore = 0;
     params.computerScore = 0;
