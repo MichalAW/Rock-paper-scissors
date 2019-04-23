@@ -128,6 +128,18 @@ button:hover, button:active {
   .scoreboard {
     float: none;
   }
+  .scoreboard-background {
+    padding-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .scoreboard {
+    margin: 0 100px;
+  }
+  .scoreboard-background {
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -82,7 +82,7 @@ function clearScoreTable() {
 }
 //create table
 function scoreTable() {
-  var numberOfParamsProgres = params.progres.length
+  var numberOfParamsProgres = params.progres.length;
 
   for (var i = 0; i < numberOfParamsProgres; i++) {
     var tr = document.createElement('tr');

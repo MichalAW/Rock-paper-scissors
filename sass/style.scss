@@ -32,102 +32,115 @@ button {
 }
 
 .scoreboard {
-  float: right;
-  border: 2px black solid;
-  margin-right: 300px;
-  padding: 20px 30px;
-  position: relative;
+    float: right;
+    border: 2px black solid;
+    margin-right: 300px;
+    padding: 20px 30px;
+    position: relative;
 }
 
 .label {
-  font-size: 12px;
-  padding: 1px 5px;
+    font-size: 12px;
+    padding: 1px 5px;
 }
 
 .player-label {
-  position: absolute;
-  top: 20px;
-  left: -30px;
-  background-color: lightgreen;
+    position: absolute;
+    top: 20px;
+    left: -30px;
+    background-color: lightgreen;
 }
 
 .computer-label {
-  position: absolute;
-  top: 20px;
-  right: -15px;
-  background-color: lightblue;
+    position: absolute;
+    top: 20px;
+    right: -15px;
+    background-color: lightblue;
 }
 
 .score {
-  background-color: lightgrey;
+    background-color: lightgrey;
 }
 
 .paper-button, 
 .rock-button,
 .scissors-button {
-  margin-top: 10px;
-  background-color: lightblue;
+    margin-top: 10px;
+    background-color: lightblue;
 }
 
 .overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  
-  &.show {
-    display: block;
-  }
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    &.show {
+        display: block;
+    }
 }
 
 .all-buttons {
-  display: none;
+    display: none;
 }
 
 .modal {
-  display: none;
-  background: #fff;
-  width: 75%;
-  min-height: 200px;
-  max-height: 75%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-
-  &.show {
-    display: block;
-  }
-  
-  .close {
+    display: none;
+    background: #fff;
+    width: 75%;
+    min-height: 200px;
+    max-height: 75%;
     position: absolute;
-    right: 0;
-    top: 0;
-    padding: 5px 10px;
-    color: #000;
-    text-decoration: none;
-  }
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
 
-  header {
-    font-size: 20px;
-    line-height: 30px;
-    min-height: 30px;
-    font-weight: bold;
-    padding: 0 30px;
-  }
+    &.show {
+        display: block;
+    }
+
+    .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 5px 10px;
+        color: #000;
+        text-decoration: none;
+    }
+
+    header {
+        font-size: 20px;
+        line-height: 30px;
+        min-height: 30px;
+        font-weight: bold;
+        padding: 0 30px;
+    }
 }
 
 .content {
-  padding: 15px;
-  height: 480px;
-  overflow-y: scroll;
+    padding: 15px;
+    height: 480px;
+    overflow-y: scroll;
 }
 
 @media only screen and (max-width: 768px) {
-  .scoreboard {
-    float: none;
-  }
+    .scoreboard {
+        float: none;
+    }
+    
+    .scoreboard-background {
+        padding-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .scoreboard {
+        margin: 0 100px;
+    }
+    
+    .scoreboard-background {
+        justify-content: center;
+    }
 }
