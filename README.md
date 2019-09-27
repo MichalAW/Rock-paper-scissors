@@ -1,6 +1,7 @@
 # 8.4.Rock-Paper-Scissors
-Simple rock-paper-scissors game. Vanilla JS, html, scss
+First Prototype of rock-paper-scissors game without any extension. 
+Based in Vanilla JS, html, scss
 
-repo --> https://github.com/MichalAW/8.4.Rock-Paper-Scissors.git
+repo --> https://github.com/MichalAW/Rock-Paper-Scissors.git
 
-open app --> https://michalaw.github.io/8.4.Rock-Paper-Scissors/
+open app --> https://michalaw.github.io/Rock-Paper-Scissors/
